@@ -1,0 +1,188 @@
+@import "../../../sassStyles/vars";
+@import "../../../sassStyles/mixins";
+
+.profile {
+  min-height: calc(100vh - 74px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    width: 410px;
+    min-height: clamp(200px, 70vh, 490px);
+  }
+
+  &__title {
+    @include font-text(24px, 29px, 500);
+    margin: 6px 0 0;
+    text-align: center;
+  }
+
+  &__form-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8.5vh;
+  }
+
+  &__inputs-container {
+    display: flex;
+    width: 410px;
+    justify-content: space-between;
+
+    &:last-of-type {
+      border-top: 1px solid $line-grey;
+    }
+  }
+
+  &__label {
+    margin: 15px 0 0;
+    @include font-text(11px, 16px, 500);
+    width: 100px;
+  }
+
+  &__input {
+    margin: 15px 0 0;
+    @include font-text(11px, 13px);
+    text-align: end;
+    width: 100%;
+    background-color: $background-light;
+    color: #000;
+    border: 2px solid $line-blue;
+
+    &:disabled {
+      border: 2px solid $line-light;
+    }
+  }
+
+  &__input_type_error {
+    color: $text-red;
+  }
+
+  &__input-error {
+    min-height: 11px;
+    margin: 3px 0;
+    @include font-text(10px, 11px);
+    color: $text-red;
+    text-align: center;
+  }
+
+  &__profile-edit {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5vh 0 10px;
+  }
+
+  &__notification {
+    color: $text-red;
+    text-align: center;
+    @include font-text(11px, 14px);
+    margin-bottom: 20px;
+    min-height: 14px;
+  }
+
+  &__notification_type_error {
+    color: $text-red;
+  }
+
+  &__notification_type_completed {
+    color: $text-green;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5vh 0 10px;
+  }
+
+  &__button {
+    border: none;
+    cursor: pointer;
+    transition: $transition-setting;
+    @include font-text(13px, 16px, 500);
+    background-color: $color-button-light;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  &__button_type_save {
+    width: 410px;
+    min-height: 45px;
+    border-radius: 3px;
+    color: $text-light;
+    @include font-text(14px, 17px);
+    margin: 0 0 5px;
+  }
+
+  &__button_type_active {
+    background-color: $color-button-blue;
+  }
+
+  &__button_type_inactive {
+    background-color: $color-button-inactive;
+    color: #C2C2C2;
+    pointer-events: none;
+  }
+
+  &__button_type_edit {
+    margin: 0;
+    font-weight: 400;
+    color: #000;
+  }
+
+  &__button_type_exit {
+    color: $text-red;
+    margin: 14px 0 0;
+  }
+
+  @include breakPoint($screen-tablet-mini) {
+    &__form {
+      min-height: clamp(200px, 45vh, 452px);
+      margin-bottom: 3.6vh;
+    }
+  
+    &__form-container {
+      margin-bottom: 7.5vh;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    & {
+      padding: 0 30px;
+      min-height: calc(100dvh - 74px);
+    }
+  
+    &__form {
+      min-height: clamp(100px, 79dvh, 650px);
+      margin-bottom: 0;
+      margin-top: 3.7dvh;
+      width: 100%;
+    }
+  
+    &__form-container {
+      margin-bottom: clamp(20px, calc(100dvh - 374px), 280px);
+    }
+  
+    &__title {
+      margin: 1.3vh 0 clamp(10px, 4dvh, 25px);
+    }
+  
+    &__inputs-container {
+      width: 100%;
+    }
+  
+    &__button {
+      font-size: 12px;
+    }
+  
+    &__button_type_save {
+      width: 100%;
+      font-size: 14px;
+    }
+  }
+}

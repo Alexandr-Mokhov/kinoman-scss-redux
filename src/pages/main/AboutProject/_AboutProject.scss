@@ -1,0 +1,140 @@
+@import "../../../sassStyles/vars";
+@import "../../../sassStyles/mixins";
+
+.about-project {
+  display: flex;
+  justify-content: center;
+  padding: 110px 70px;
+
+  &__container {
+    width: $content-desctop;
+  }
+
+  &__title {
+    @include font-text(22px, 27px);
+    margin: 0;
+    min-height: 50px;
+    border-bottom: 1px solid #000;
+    letter-spacing: -0.88px;
+  }
+
+  &__info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  &__info-title {
+    @include font-text(20px, 24px);
+    margin: 70px 0 0;
+    letter-spacing: -0.8px;
+  }
+
+  &__info-subtitle {
+    @include font-text(14px, 20px);
+    margin: 26px 0 0;
+  }
+
+  &__time-line {
+    margin-top: 110px;
+    min-height: 36px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
+
+  &__time-line-text {
+    @include font-text(14px, 36px);
+    margin: 0;
+    text-align: center;
+    background-color: #F2F2F2;
+
+    &:first-of-type {
+      background-color: $color-button-green;
+    }
+  }
+
+  &__time-name {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
+
+  &__time-name-text {
+    @include font-text(14px, 17px, 500);
+    margin: 0;
+    text-align: center;
+    color: $text-grey;
+  }
+
+  @include breakPoint($screen-desctop) {
+    &__container {
+      width: $full-width;
+    }
+  }
+
+  @include breakPoint($screen-tablet) {
+    & {
+      padding: 90px 50px;
+    }
+
+    &__info {
+      gap: 30px;
+    }
+
+    &__info-subtitle {
+      @include font-text-breakPoint(12px, 18px);
+      margin: 22px 0 0;
+    }
+
+    &__time-line {
+      margin-top: 93px;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    & {
+      padding: 70px 18px;
+    }
+
+    &__title {
+      @include font-text-breakPoint(18px, 22px);
+      letter-spacing: -0.72px;
+    }
+
+    &__info {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0;
+    }
+
+    &__info-title {
+      @include font-text-breakPoint(18px, 22px);
+      margin: 58px 0 0;
+      letter-spacing: -0.7px;
+    }
+
+    &__info-subtitle {
+      @include font-text-breakPoint(11px, 16px);
+      margin: 16px 0 0;
+    }
+
+    &__time-line {
+      margin-top: 60px;
+      min-height: 35px;
+      grid-template-columns: 1fr 2fr;
+    }
+
+    &__time-line-text {
+      @include font-text-breakPoint(11px, 35px);
+    }
+
+    &__time-name {
+      margin-top: 10px;
+      grid-template-columns: 1fr 2fr;
+    }
+
+    &__time-name-text {
+      @include font-text-breakPoint(11px, 13px);
+    }
+  }
+}

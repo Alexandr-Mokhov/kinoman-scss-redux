@@ -1,0 +1,30 @@
+@import "../vendor/normalize.scss";
+@import "../vendor/fonts/fonts";
+@import "./global";
+
+@import "../components/Header/Header";
+@import "../pages/main/Promo/Promo";
+@import "../pages/main/AboutProject/AboutProject";
+@import "../pages/main/Techs/Techs";
+@import "../pages/main/AboutMe/AboutMe";
+@import "../pages/main/Portfolio/Portfolio";
+@import "../pages/main/Main/Main";
+@import "../pages/login/Login/Login";
+@import "../components/Footer/Footer";
+@import "../components/Form/Form";
+@import "../components/InfoTooltip/InfoTooltip";
+@import "../components/MoviesCard/MoviesCard";
+@import "../components/MoviesCardList/MoviesCardList";
+@import "../components/Navigation/Navigation";
+@import "../components/Preloader/Preloader";
+@import "../components/SearchForm/SearchForm";
+@import "../pages/movies/MoreMovies/MoreMovies";
+@import "../pages/movies/Movies/Movies";
+@import "../pages/notFound/NotFound/NotFound";
+@import "../pages/profile/Profile/Profile";
+@import "../pages/savedMovies/SavedMovies/SavedMovies";
+
+
+// * {
+// 	outline: 1px dashed red;
+// }

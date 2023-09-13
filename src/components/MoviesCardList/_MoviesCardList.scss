@@ -1,0 +1,66 @@
+@import "../../sassStyles/vars";
+@import "../../sassStyles/mixins";
+
+.movies-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 70px 10px;
+
+  &__not-found {
+    @include font-text(24px, 28px, 500);
+  }
+
+  &__error-found {
+    @include font-text(18px, 22px);
+    text-align: center;
+    color: $text-red;
+  }
+
+  &__container {
+    width: $content-desctop;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 38px 20px;
+    flex: 1;
+    align-content: flex-start;
+  }
+
+  @include breakPoint($screen-desctop) {
+    &__container {
+      width: $full-width;
+    }
+  }
+
+  @include breakPoint($screen-tablet) {
+    & {
+      padding: 70px 50px 10px;
+    }
+  
+    &__container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @include breakPoint($screen-tablet-mini) {
+    & {
+      padding: 70px 30px 10px;
+    }
+  
+    &__container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    & {
+      padding: 40px 10px 10px;
+    }
+  
+    &__container {
+      grid-template-columns: 1fr;
+      gap: 35px;
+    }
+  }
+}

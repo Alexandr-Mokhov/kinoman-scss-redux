@@ -1,0 +1,96 @@
+@import "../../sassStyles/vars";
+@import "../../sassStyles/mixins";
+
+.info-tooltip {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s all ease;
+
+  &_opened {
+    pointer-events: all;
+    opacity: 1;
+  }
+
+  &__container {
+    width: 430px;
+    background-color: $background-light;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 36px;
+    position: relative;
+  }
+
+  &__close {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    background: transparent;
+    background-image: url(./images/button-info-tooltip-close.svg);
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 0;
+    cursor: pointer;
+    transition: $transition-setting;
+    padding: 0;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  &__image_type_err {
+    background-image: url(./images/err-image.svg);
+    width: 120px;
+    height: 120px;
+    align-self: center;
+    margin: 32px 0 40px;
+  }
+
+  &__title {
+    text-align: center;
+    margin: 0 0 24px;
+    @include font-text(24px, 29px, 900);
+    color: #000;
+  }
+
+  @include breakPoint(550px) {
+    &__container {
+      margin: 0 20px;
+      padding: 18px;
+      justify-content: space-between;
+    }
+
+    &__close {
+      top: -36px;
+      right: 0;
+      width: 20px;
+      height: 20px;
+    }
+  
+    &__title {
+      @include font-text-breakPoint(20px, 24px);
+    }
+  }
+
+  @include breakPoint(315px) {
+    &__title {
+      max-width: calc(100vw - 100px);
+      @include font-text-breakPoint(18px, 22px);
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}

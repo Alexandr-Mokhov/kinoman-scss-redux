@@ -1,0 +1,105 @@
+@import "../../../sassStyles/vars";
+@import "../../../sassStyles/mixins";
+
+.portfolio {
+  display: flex;
+  justify-content: center;
+  padding: 0 70px 88px;
+
+  &__container {
+    width: $content-desctop;
+  }
+
+  &__title {
+    @include font-text(18px, 20px);
+    color: $text-grey;
+    margin: 0 0 29px;
+  }
+
+  &__list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  &__item {
+    border-top: 1px solid $line-grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 89px;
+
+    &:first-of-type {
+      border-top: 1px solid #FFF;
+    }
+  }
+
+  &__link {
+    @include font-links(30px, 50px, 400);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    transition: $transition-setting;
+    letter-spacing: -1.2px;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  &__link-arrow {
+    background-image: url(./images/arrow-link.svg);
+    min-width: 20px;
+    min-height: 20px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 17px;
+  }
+
+  @include breakPoint($screen-desctop) {
+    &__container {
+      width: $full-width;
+    }
+  }
+
+  @include breakPoint($screen-tablet) {
+    & {
+      padding: 0 50px 55px;
+    }
+  
+    &__title {
+      margin: 0 0 33px;
+    }
+  
+    &__link {
+      font-size: 28px;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    & {
+      padding: 0 14px 30px;
+    }
+  
+    &__title {
+      font-size: 14px;
+      margin: 0 0 20px;
+    }
+  
+    &__item {
+      min-height: 68px;
+    }
+  
+    &__link {
+      @include font-links-breakPoint(16px, 28px);
+      letter-spacing: 0.5px;
+    }
+  
+    &__link-arrow {
+      width: 12px;
+      min-height: 12px;
+      margin-top: 8px;
+    }
+  }
+}
+

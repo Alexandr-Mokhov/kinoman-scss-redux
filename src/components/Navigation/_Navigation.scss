@@ -1,0 +1,214 @@
+@import "../../sassStyles/vars";
+@import "../../sassStyles/mixins";
+
+.navigation {
+  width: $full-width;
+
+  &__button-menu {
+    display: none;
+  }
+
+  &__container {
+    margin: 0 0 0 44px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__links {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+
+  &__link {
+    @include font-text(13px, 18px);
+    margin: 0;
+    text-decoration: none;
+    color: $link-dark;
+    transition: $transition-setting;
+    margin-right: 16px;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  &__link_type_light {
+    color: $link-light;
+  }
+
+  &__link_type_active {
+    font-weight: 500;
+  }
+  
+  &__link_type_main {
+    display: none;
+  }
+
+  &__account {
+    display: flex;
+    @include font-links(14px, 26px);
+    color: $link-dark;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  &__account__light {
+    color: $link-light;
+  }
+
+  &__icon-account {
+    background-image: url(./images/account-icon.svg);
+    width: 26px;
+    min-height: 30px;
+    background-repeat: no-repeat;
+    margin-left: 20px;
+    outline: 0;
+    border: 0;
+    padding: 0;
+    background-color: #E5E5E5;
+    cursor: pointer;
+    border-radius: 4px;
+    background-position: center;
+  }
+
+  @include breakPoint($screen-tablet-mini) {
+    &__container {
+      margin: 0 0;
+      flex-direction: column;
+      align-items: center;
+      width: 520px;
+      height: 100dvh;
+      position: fixed;
+      right: 0;
+      top: 0;
+      background-color: $background-light;
+      z-index: 3;
+      transition: right .5s;
+    }
+  
+    &__container_type_hide {
+      right: -100%;
+    }
+  
+    &__button-menu {
+      display: block;
+      width: 44px;
+      min-height: 44px;
+      background-repeat: no-repeat;
+      margin: 0;
+      cursor: pointer;
+      transition: $transition-setting;
+      background-color: $background-light;
+      border: 0;
+      background-size: contain;
+      padding: 0;
+      position: absolute;
+      right: 30px;
+      top: 15px;
+      z-index: 5;
+  
+      &:hover {
+        opacity: $opacity-value;
+      }
+    }
+  
+    &__button-menu_type_open {
+      background-image: url(./images/button-menu-open-black.svg);
+    }
+  
+    &__button-menu_type_light {
+      background-image: url(./images/button-menu-open-light.svg);
+      background-color: $background-dark;
+    }
+  
+    &__button-menu_type_close {
+      background-image: url(./images/button-menu-close.svg);
+      width: 25px;
+      min-height: 25px;
+      top: 25px;
+      right: 25px;
+      position: fixed;
+      background-color: $background-light;
+    }
+  
+    &__links {
+      flex-direction: column;
+      margin: 15.3vh 0 0;
+    }
+  
+    &__link {
+      display: block;
+      @include font-text(18px, 26px, 500);
+      min-height: 26px;
+      margin: 0 0 24px 0;
+      color: $link-dark;
+    }
+  
+    &__link_type_active {
+      border-bottom: 2px solid $link-dark;
+    }
+  
+    &__link_type_main {
+      display: block;
+    }
+  
+    &__account {
+      margin: 4vh 0 9vh;
+      line-height: 16px;
+      align-items: center;
+    }
+  
+    &__icon-account {
+      width: 26px;
+      min-height: 30px;
+    }
+  
+    &__overlay {
+      background-color: #000;
+      width: 100vw;
+      min-height: 100vh;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 2;
+      opacity: .3;
+      transition: $transition-setting;
+    }
+  }
+
+  @include breakPoint(545px) {
+    &__container {
+      width: $full-width;
+    }
+  
+    &__button-menu {
+      width: 37px;
+      min-height: 40px;
+      right: 15px;
+      top: 17px;
+    }
+  
+    &__button-menu_type_close {
+      width: 23px;
+      min-height: 23px;
+    }
+  
+    &__links {
+      margin: 18.3vh 0 0;
+    }
+  
+    &__link {
+      margin: 0 0 15px 0;
+      min-height: 30px;
+    }
+  
+    &__account {
+      margin: 4vh 0 6.2vh;
+    }
+  }
+}

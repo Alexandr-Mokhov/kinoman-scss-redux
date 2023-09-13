@@ -1,0 +1,104 @@
+@import "../../sassStyles/vars";
+@import "../../sassStyles/mixins";
+
+.movies-card {
+  display: grid;
+  align-self: flex-start;
+
+  &__image {
+    width: $full-width;
+    height: 150px;
+    object-fit: cover;
+    transition: $transition-setting;
+    cursor: pointer;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $line-grey;
+    min-height: 61px;
+  }
+
+  &__name {
+    @include font-text(13px, 16px, 500);
+    margin: 15px 0 0;
+    min-height: 32px;
+  }
+
+  &__favorites {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: $transition-setting;
+    margin-top: 10px;
+    border: none;
+    background-image: url(./images/favorites.svg);
+    width: 11px;
+    min-height: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  &__favorites_active {
+    background-image: url(./images/favorites-active.svg);
+  }
+
+  &__favorites_delete {
+    background-image: url(./images/favorites-delete.svg);
+    opacity: 0;
+  }
+
+  &:hover &__favorites_delete {
+    opacity: 1;
+  }
+
+  &__time {
+    @include font-text(11px, 13px);
+    color: $text-grey;
+    margin: 6px 0 0 0;
+  }
+
+  @include breakPoint($screen-tablet-mini) {
+    &__image {
+      min-height: 189px;
+    }
+  
+    &__name {
+      font-size: 13px;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    &__image {
+      width: $full-width;
+      min-height: 168px;
+    }
+  
+    &__container {
+      min-height: 59px;
+    }
+  
+    &__name {
+      font-size: 12px;
+      line-height: 15px;
+      @include font-text-breakPoint(12px, 15px);
+    }
+  
+    &__time {
+      @include font-text-breakPoint(10px, 12px);
+    }
+  }
+}

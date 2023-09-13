@@ -1,0 +1,81 @@
+@import "../../../sassStyles/vars";
+@import "../../../sassStyles/mixins";
+
+.not-found {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: calc(100vh - 120px);
+  }
+
+  &__container-text {
+    text-align: center;
+    margin: 26.5vh 0 0;
+  }
+
+  &__title {
+    @include font-text(140px, 170px);
+    margin: 0 0 5px;
+  }
+
+  &__subtitle {
+    @include font-text(16px, 19px);
+    margin: 0;
+  }
+
+  &__back {
+    text-decoration: none;
+    color: $color-button-blue;
+    cursor: pointer;
+    transition: $transition-setting;
+    @include font-text(14px, 17px);
+    background-color: $background-light;
+    border: none;
+    margin-top: 30px;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+  
+  @include breakPoint($screen-tablet-mini) {
+    &__container {
+      min-height: calc(100vh - 445px);
+    }
+    
+    &__container-text {
+      margin: 18vh 0 0;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    &__container {
+      min-height: calc(100vh - 62px);
+    }
+  
+    &__container-text {
+      margin: 38.2vh 0 0;
+    }
+  
+    &__title {
+      @include font-text-breakPoint(80px, 97px);
+      margin: 0 0 10px;
+    }
+  
+    &__subtitle {
+      @include font-text-breakPoint(12px, 15px);
+    }
+  
+    &__back {
+      @include font-text-breakPoint(12px, 15px);
+    }
+  }
+}

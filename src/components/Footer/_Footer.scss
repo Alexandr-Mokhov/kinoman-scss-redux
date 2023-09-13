@@ -1,0 +1,103 @@
+@import "../../sassStyles/vars";
+@import "../../sassStyles/mixins";
+
+.footer {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 80px 70px 20px;
+
+  &__container {
+    width: $content-desctop;
+  }
+
+  &__title {
+    @include font-text(13px, 16px);
+    margin: 0;
+    color: $text-grey;
+    text-align: center;
+    min-height: 37px;
+    border-bottom: 1px solid $line-grey;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__copyright {
+    @include font-text(13px, 16px);
+    margin: 20px 0 0;
+  }
+
+  &__links {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 18px 0 0;
+  }
+
+  &__list {
+    margin: 0 0 0 20px;
+  }
+
+  &__link {
+    @include font-links(13px, 16px, 400);
+    margin: 0;
+    transition: $transition-setting;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  @include breakPoint($screen-desctop) {
+    &__container {
+      width: $full-width;
+    }
+  }
+
+  @include breakPoint($screen-tablet) {
+    & {
+      padding: 80px 30px 20px;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    & {
+      padding: 80px 10px 20px;
+    }
+
+    &__title {
+      @include font-text-breakPoint(12px, 15px);
+    }
+
+    &__info {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+
+    &__copyright {
+      @include font-text-breakPoint(12px, 15px);
+      margin: 28px 0 0;
+    }
+
+    &__links {
+      flex-direction: column;
+      align-items: center;
+      margin: 28px 0 0;
+    }
+
+    &__list {
+      margin: 0;
+
+      &:first-of-type {
+        margin-bottom: 10px;
+      }
+    }
+
+    &__link {
+      @include font-links-breakPoint(12px, 15px);
+    }
+  }
+}

@@ -1,0 +1,123 @@
+@import "../../../sassStyles/vars";
+@import "../../../sassStyles/mixins";
+
+.techs {
+  background-color: #F5F5F5;
+  display: flex;
+  justify-content: center;
+  padding: 100px 70px;
+
+  &__container {
+    width: $content-desctop;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    @include font-text(22px, 27px);
+    margin: 0;
+    min-height: 50px;
+    border-bottom: 1px solid #000;
+    letter-spacing: -0.88px;
+    width: 100%;
+  }
+
+  &__subtitle {
+    @include font-text(50px, 58px);
+    margin: 90px 0 0;
+    letter-spacing: -2px;
+  }
+
+  &__subtitle-info {
+    @include font-text(14px, 20px);
+    text-align: center;
+    max-width: 460px;
+    margin: 26px 0 0;
+    letter-spacing: -0.56px;
+  }
+
+  &__grid {
+    width: calc(100vw - 180px);
+    max-width: 700px;
+    margin: 100px 0 0;
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 90px);
+    gap: 10px;
+    justify-content: center;
+  }
+
+  &__grid-item {
+    @include font-text(14px, 17px);
+    min-height: 60px;
+    border-radius: 10px;
+    background-color: $line-grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.56px;
+  }
+
+  @include breakPoint($screen-desctop) {
+    &__container {
+      width: $full-width;
+    }
+  }
+
+  @include breakPoint($screen-tablet) {
+    & {
+      padding: 90px 50px;
+    }
+
+    &__subtitle {
+      margin: 80px 0 0;
+    }
+  
+    &__subtitle-info {
+      @include font-text-breakPoint(12px, 18px);
+      margin: 22px 0 0;
+    }
+  
+    &__grid {
+      width: calc(100vw - 110px);
+      max-width: 650px;
+      margin: 83px 0 0;
+      grid-template-columns: repeat(auto-fit, 84px);
+    }
+  
+    &__grid-item {
+      @include font-text-breakPoint(12px, 15px);
+      min-height: 57px;
+      box-sizing: border-box;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    & {
+      padding: 70px 18px;
+    }
+  
+    &__title {
+      @include font-text-breakPoint(18px, 22px);
+      letter-spacing: -0.72px;
+    }
+  
+    &__subtitle {
+      @include font-text-breakPoint(30px, 36px);
+      margin: 60px 0 0;
+      letter-spacing: -1.2px;
+    }
+  
+    &__subtitle-info {
+      @include font-text-breakPoint(11px, 16px);
+      margin: 24px 0 0;
+    }
+  
+    &__grid {
+      width: calc(100vw - 60px);
+      margin: 50px 0 0;
+    }
+  }
+}

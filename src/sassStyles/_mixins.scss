@@ -1,0 +1,40 @@
+@import "../sassStyles/vars";
+
+@mixin font-links($fz, $lh, $fw: 500) {
+  font-size: $fz;
+  line-height: $lh;
+  font-weight: $fw;
+  cursor: pointer;
+  transition: $transition-setting;
+  text-decoration: none;
+}
+
+@mixin font-links-breakPoint($fz, $lh) {
+  font-size: $fz;
+  line-height: $lh;
+}
+
+@mixin font-text($fz, $lh, $fw: 400) {
+  font-size: $fz;
+  line-height: $lh;
+  font-weight: $fw;
+}
+
+@mixin font-text-breakPoint($fz, $lh) {
+  font-size: $fz;
+  line-height: $lh;
+}
+
+@mixin breakPoint($screen) {
+  @media screen and (max-width: $screen) {
+    @content;
+  }
+}
+
+@mixin preloaderTransform($value) {
+  -webkit-transform: scale($value, $value);
+  -moz-transform: scale($value, $value);
+  -ms-transform: scale($value, $value);
+  -o-transform: scale($value, $value);
+  transform: scale($value, $value);
+}

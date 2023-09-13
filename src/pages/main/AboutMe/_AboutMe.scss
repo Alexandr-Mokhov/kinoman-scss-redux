@@ -1,0 +1,156 @@
+@import "../../../sassStyles/vars";
+@import "../../../sassStyles/mixins";
+
+.about-me {
+  display: flex;
+  justify-content: center;
+  padding: 110px 70px 100px;
+
+  &__container {
+    width: $content-desctop;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    @include font-text(22px, 27px);
+    margin: 0;
+    min-height: 50px;
+    border-bottom: 1px solid #000;
+    letter-spacing: -0.88px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 66px;
+  }
+
+  &__name {
+    @include font-text(50px, 58px);
+    margin: 0;
+    max-width: 600px;
+    letter-spacing: -2px;
+  }
+
+  &__profession {
+    @include font-text(18px, 20px, 500);
+    margin: 18px 0 0;
+    max-width: 600px;
+  }
+
+  &__biography {
+    @include font-text(14px, 22px);
+    margin: 26px 0 100px;
+    max-width: 600px;
+  }
+
+  &__link {
+    @include font-links(14px, 17px);
+    margin: 0;
+    text-decoration: none;
+    transition: $transition-setting;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  &__photo {
+    width: 270px;
+    height: 327px;
+    background-size: contain;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-left: 50px;
+  }
+
+  @include breakPoint($screen-desctop) {
+    &__container {
+      width: $full-width;
+    }
+  }
+
+  @include breakPoint($screen-tablet) {
+    & {
+      padding: 90px 50px;
+    }
+
+    &__name {
+      @include font-text-breakPoint(40px, 40px);
+    }
+
+    &__profession {
+      @include font-text-breakPoint(12px, 18px);
+      margin: 16px 0 0;
+    }
+
+    &__biography {
+      @include font-text-breakPoint(12px, 18px);
+      margin: 20px 0 87px;
+    }
+
+    &__photo {
+      width: 255px;
+      height: 307px;
+    }
+  }
+
+  @include breakPoint($screen-mobile-maxi) {
+    & {
+      padding: 70px 50px;
+    }
+  
+    &__info {
+      flex-direction: column-reverse;
+      align-items: center;
+      padding-top: 60px;
+    }
+  
+    &__photo {
+      margin-left: 0;
+    }
+  
+    &__name {
+      @include font-text-breakPoint(40px, 48px);
+      margin: 40px 0 0;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    & {
+      padding: 70px 14px;
+    }
+  
+    &__title {
+      @include font-text-breakPoint(18px, 22px);
+      letter-spacing: -0.72px;
+    }
+  
+    &__photo {
+      height: 352px;
+    }
+  
+    &__name {
+      @include font-text-breakPoint(30px, 36px);
+      letter-spacing: -1.2px;
+    }
+  
+    &__profession {
+      @include font-text-breakPoint(11px, 16px);
+      margin: 20px 0 0;
+    }
+  
+    &__biography {
+      @include font-text-breakPoint(11px, 16px);
+      margin: 20px 0 40px;
+    }
+  }
+
+  @include breakPoint($screen-mobile-mini) {
+    &__photo {
+      width: 100%;
+    }
+  }
+}
+

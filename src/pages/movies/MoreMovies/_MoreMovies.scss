@@ -1,0 +1,45 @@
+@import "../../../sassStyles/vars";
+@import "../../../sassStyles/mixins";
+
+.more-movies {
+  display: flex;
+  justify-content: center;
+  padding: 50px 70px 78px;
+
+  &__container {
+    width: $content-desctop;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    width: 320px;
+    min-height: 36px;
+    background-color: #E5E5E5;
+    border: none;
+    border-radius: 6px;
+    @include font-text(12px, 15px, 500);
+    cursor: pointer;
+    transition: $transition-setting;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  @include breakPoint($screen-desctop) {
+    &__container {
+      width: $full-width;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    & {
+      padding: 50px 14px 78px;
+    }
+  
+    &__button {
+      max-width: 240px;
+    }
+  }
+}

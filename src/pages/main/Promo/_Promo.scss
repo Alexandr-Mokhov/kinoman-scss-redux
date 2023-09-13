@@ -1,0 +1,142 @@
+@import "../../../sassStyles/vars";
+
+.promo {
+  display: flex;
+  justify-content: center;
+  background-color: $background-dark;
+  padding: 75px 70px;
+
+  &__container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: $content-desctop;
+  }
+
+  &__logo {
+    min-width: 310px;
+    min-height: 304px;
+    background-image: url(./images/logo-promo.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &__title {
+    @include font-text(50px, 58px);
+    color: $text-light;
+    max-width: 640px;
+    margin: 0 20px 0 0
+  }
+
+  &__subtitle {
+    @include font-text(13px, 16px);
+    margin: 36px 0 0;
+    color: $text-light;
+    max-width: 310px;
+    opacity: .5;
+  }
+
+  &__nav-tab {
+    padding: 0;
+    margin: 146px 0 0;
+    display: flex;
+    gap: 10px;
+  }
+
+  &__nav-tab-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__button {
+    width: 129px;
+    min-height: 36px;
+    border: 1px solid $color-button-light;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include font-links(12px, 16px);
+    color: #FFF;
+    box-sizing: border-box;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  @include breakPoint($screen-desctop) {
+    &__container {
+      width: $full-width;
+    }
+  }
+
+  @include breakPoint($screen-desctop-mini) {
+    &__title {
+      @include font-text-breakPoint(40px, 50px);
+      max-width: 520px;
+    }
+  }
+
+
+  @include breakPoint($screen-tablet) {
+    & {
+      padding: 140px 30px 75px;
+    }
+
+    &__container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__title {
+      text-align: center;
+      max-width: 640px;
+      margin: 48px 0 0
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__subtitle {
+      margin: 22px 0 0;
+      max-width: 260px;
+      text-align: center;
+    }
+
+    &__nav-tab {
+      margin: 92px 0 0;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    & {
+      padding: 70px 8px 30px;
+    }
+  
+    &__logo {
+      min-width: 210px;
+      min-height: 206px;
+    }
+  
+    &__title {
+      margin: 45px 0 0;
+      @include font-text-breakPoint(28px, 38px);
+    }
+  
+    &__subtitle {
+      margin: 25px 0 0;
+    }
+  
+    &__nav-tab {
+      margin: 78px 0 0;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
+

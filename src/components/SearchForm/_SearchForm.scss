@@ -1,0 +1,198 @@
+@import "../../sassStyles/vars";
+@import "../../sassStyles/mixins";
+
+.search-form {
+  padding: 70px 70px 12px;
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: $content-desctop;
+  }
+
+  &__input-container {
+    display: flex;
+  }
+
+  &__input {
+    min-height: 72px;
+    width: 100%;
+    border: 2px solid rgba(170, 170, 170, 0.2);
+    border-radius: 8px;
+    padding: 0 0 0 25px;
+    box-sizing: border-box;
+    color: #000;
+
+    &::placeholder {
+      color: #000;
+      @include font-text(18px, 20px);
+      opacity: .4;
+    }
+  }
+
+  &__button {
+    background-color: $color-button-blue;
+    width: 100px;
+    height: 52px;
+    border: none;
+    border-radius: 5px;
+    color: $text-light;
+    @include font-text(14px, 18px, 500);
+    transition: $transition-setting;
+    cursor: pointer;
+    margin: 10px 0 0 -110px;
+    z-index: 2;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  &__input-error {
+    min-height: 20px;
+    margin: 3px 0;
+    @include font-text(13px, 16px);
+    color: $text-light;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__input-error_active {
+    color: $text-red;
+  }
+
+  &__checkbox-container {
+    margin-top: 0px;
+    border-bottom: 1px solid $line-grey;
+    min-height: 62px;
+  }
+
+  &__checkbox-input {
+    position: absolute;
+    width: 170px;
+    height: 20px;
+    overflow: hidden;
+    appearance: none;
+    pointer-events: none;
+  }
+
+  &__checkbox-label {
+    transition: $transition-setting;
+    cursor: pointer;
+
+    &:hover {
+      opacity: $opacity-value;
+    }
+  }
+
+  &__new-checkbox {
+    display: inline-block;
+    position: relative;
+    @include font-text(13px, 16px);
+    padding: 0 0 0 50px;
+    border-radius: 2px;
+
+    &::before {
+      display: block;
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 34px;
+      min-height: 14px;
+      background-color: #EBEBEB;
+      border-radius: 20px;
+      transition: background-color .5s;
+    }
+
+    &::after {
+      display: block;
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 3px;
+      width: 10px;
+      height: 10px;
+      background-color: #FFF;
+      border-radius: 5px;
+      transition: left .5s;
+    }
+  }
+
+  &__checkbox-input:checked + &__new-checkbox::before {
+    background-color: $color-button-green;
+  }
+
+  &__checkbox-input:checked + &__new-checkbox::after {
+    left: 22px;
+  }
+
+  @include breakPoint($screen-desctop) {
+    &__container {
+      width: $full-width;
+    }
+  }
+
+  @include breakPoint($screen-tablet) {
+    & {
+      padding: 70px 50px 10px;
+    }
+  
+    &__button {
+      right: 40px;
+    }
+  
+    &__checkbox-container {
+      min-height: 70px;
+    }
+  }
+
+  @include breakPoint($screen-tablet-mini) {
+    & {
+      padding: 70px 30px 10px;
+    }
+  }
+
+  @include breakPoint($screen-mobile) {
+    & {
+      padding: 70px 14px 10px;
+    }
+  
+    &__button {
+      width: 80px;
+      height: 44px;
+      margin: 6px 0 0 -86px;
+    }
+  
+    &__input {
+      min-height: 56px;
+      padding-left: 12px;
+    
+      &::placeholder {
+        @include font-text-breakPoint(16px, 16px);
+      }
+    }
+  
+    &__checkbox-container {
+      margin-top: 8px;
+      min-height: 82px;
+    }
+  
+    &__checkbox-input {
+      width: 155px;
+    }
+  
+    &__new-checkbox {
+      @include font-text-breakPoint(11px, 18px);
+    }
+  
+    &__line {
+      margin-top: 64px;
+    }
+  }
+}
+
