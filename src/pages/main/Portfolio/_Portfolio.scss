@@ -41,6 +41,7 @@
     margin: 0;
     transition: $transition-setting;
     letter-spacing: -1.2px;
+    color: $link-dark;
 
     &:hover {
       opacity: $opacity-value;

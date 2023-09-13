@@ -45,6 +45,7 @@
     @include font-links(13px, 16px, 400);
     margin: 0;
     transition: $transition-setting;
+    color: $link-dark;
 
     &:hover {
       opacity: $opacity-value;
