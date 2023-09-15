@@ -16,8 +16,25 @@ import { checkToken } from './api/MainApi';
 import { getSavedMovies } from './api/MainApi';
 import InfoTooltip from './components/InfoTooltip/InfoTooltip';
 import { MOVIE_DOWNLOAD_ERROR, TOKEN_VERIFICATION_ERROR } from './constans';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function App() {
+
+  const dispatch = useDispatch();
+  const logged = useSelector(state => state.logged)
+  console.log(logged);
+
+  const loggededIn = (res) => {
+    dispatch({type: 'LOGGED_IN', payload: res})
+  }
+
+  // const loggededOut = (res) => {
+  //   dispatch({type: 'LOGGED_OUT', payload: res})
+  // }
+
+  loggededIn(true)
+  // loggededOut(false)
+
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
