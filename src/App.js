@@ -21,22 +21,15 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function App() {
 
   const dispatch = useDispatch();
-  const logged = useSelector(state => state.logged)
-  console.log(logged);
+  const loggedIn = useSelector(state => state.loggedIn);
+  console.log(loggedIn);
 
-  const loggededIn = (res) => {
-    dispatch({type: 'LOGGED_IN', payload: res})
+  const setLoggedIn = (value) => {
+    dispatch({type: 'LOGGED', payload: value});
   }
 
-  // const loggededOut = (res) => {
-  //   dispatch({type: 'LOGGED_OUT', payload: res})
-  // }
-
-  loggededIn(true)
-  // loggededOut(false)
-
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', ownerId: '' });
   const [savedFilms, setSavedFilms] = useState([]);
@@ -137,6 +130,7 @@ export default function App() {
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
         <Header loggedIn={loggedIn} />
+        {/* <Header /> */}
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/sign-up" element={
