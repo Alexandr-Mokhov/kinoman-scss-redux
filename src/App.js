@@ -148,7 +148,6 @@ export default function App() {
           <Route path="/movies" element={
             <ProtectedRouteElement
               element={Movies}
-              loggedIn={loggedIn}
               savedFilms={savedFilms}
               setSavedFilms={setSavedFilms}
               foundMovies={foundMovies}

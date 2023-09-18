@@ -1,8 +1,11 @@
 import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ProtectedRouteElement = ({ element: Component, ...props }) => {
+  const loggedIn = useSelector(state => state.loggedIn);
+
   return (
-    props.loggedIn ? <Component {...props} /> : <Navigate to="/" replace />
+    loggedIn ? <Component {...props} /> : <Navigate to="/" replace />
   )
 }
 
