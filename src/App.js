@@ -140,8 +140,6 @@ export default function App() {
           />
           <Route path="/sign-in" element={
             <Login
-              loggedIn={loggedIn}
-              setLoggedIn={setLoggedIn}
               isLoading={isLoading}
               setIsLoading={setIsLoading}
               setCurrentUser={setCurrentUser}

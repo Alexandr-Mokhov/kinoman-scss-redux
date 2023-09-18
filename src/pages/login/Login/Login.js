@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useFormWithValidation } from '../../../utils/formValidator';
 import Form from '../../../components/Form/Form';
 import { authorizeUser } from '../../../api/MainApi';
@@ -7,13 +8,16 @@ import handleError from '../../../utils/handleError';
 import { EMAIL_RULE } from '../../../constans';
 
 export default function Login({
-  setLoggedIn,
   isLoading,
   setIsLoading
 }) {
   const navigate = useNavigate();
   const { values, handleChange, errors, isValid, resetForm, isRegEx } = useFormWithValidation();
   const [errorText, setErrorText] = useState('');
+  const dispatch = useDispatch();
+  const setLoggedIn = (value) => {
+    dispatch({type: 'LOGGED', payload: value});
+  }
 
   function handleSubmit(evt) {
     evt.preventDefault();
