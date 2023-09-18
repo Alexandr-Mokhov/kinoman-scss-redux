@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Form from '../../../components/Form/Form';
 import { useFormWithValidation } from '../../../utils/formValidator';
 import { registerUser, authorizeUser } from '../../../api/MainApi';
@@ -10,7 +11,6 @@ import {
 } from '../../../constans';
 
 export default function Register({
-  setLoggedIn,
   isLoading,
   setIsLoading,
   setCurrentUser
@@ -18,6 +18,10 @@ export default function Register({
   const navigate = useNavigate();
   const { values, handleChange, errors, isValid, resetForm, isRegEx } = useFormWithValidation();
   const [errorText, setErrorText] = useState('');
+  const dispatch = useDispatch();
+  const setLoggedIn = (value) => {
+    dispatch({type: 'LOGGED', payload: value});
+  }
 
   function handleSubmit(evt) {
     evt.preventDefault();

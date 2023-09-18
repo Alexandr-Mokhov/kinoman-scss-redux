@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from './components/Header/Header';
 import Main from './pages/main/Main/Main';
 import Movies from './pages/movies/Movies/Movies';
@@ -16,17 +17,15 @@ import { checkToken } from './api/MainApi';
 import { getSavedMovies } from './api/MainApi';
 import InfoTooltip from './components/InfoTooltip/InfoTooltip';
 import { MOVIE_DOWNLOAD_ERROR, TOKEN_VERIFICATION_ERROR } from './constans';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default function App() {
 
   const dispatch = useDispatch();
-  const loggedIn = useSelector(state => state.loggedIn);
-  console.log(loggedIn);
-
   const setLoggedIn = (value) => {
     dispatch({type: 'LOGGED', payload: value});
   }
+  const loggedIn = useSelector(state => state.loggedIn);
+  console.log(loggedIn);
 
   const navigate = useNavigate();
   // const [loggedIn, setLoggedIn] = useState(false);
@@ -134,7 +133,6 @@ export default function App() {
           <Route path="/" element={<Main />} />
           <Route path="/sign-up" element={
             <Register
-              setLoggedIn={setLoggedIn}
               isLoading={isLoading}
               setIsLoading={setIsLoading}
               setCurrentUser={setCurrentUser}
