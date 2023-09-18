@@ -146,8 +146,7 @@ export default function App() {
             />}
           />
           <Route path="/movies" element={
-            <ProtectedRouteElement
-              element={Movies}
+            <ProtectedRouteElement element={Movies}
               savedFilms={savedFilms}
               setSavedFilms={setSavedFilms}
               foundMovies={foundMovies}
@@ -164,9 +163,7 @@ export default function App() {
             />}
           />
           <Route path="/saved-movies" element={
-            <ProtectedRouteElement
-              element={SavedMovies}
-              loggedIn={loggedIn}
+            <ProtectedRouteElement element={SavedMovies}
               savedFilms={savedFilms}
               setSavedFilms={setSavedFilms}
               notFoundMovies={notFoundMovies}
@@ -177,8 +174,6 @@ export default function App() {
           />
           <Route path="/profile" element={
             <ProtectedRouteElement element={Profile}
-              loggedIn={loggedIn}
-              setLoggedIn={setLoggedIn}
               isLoading={isLoading}
               setIsLoading={setIsLoading}
               setCurrentUser={setCurrentUser}
