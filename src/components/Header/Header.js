@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Navigation from '../Navigation/Navigation';
 
 export default function Header() {
-  const loggedIn = useSelector(state => state.loggedIn);
+  const loggedIn = useSelector(state => state.logged.loggedIn);
   const { pathname } = useLocation();
   const isMain = pathname === '/';
   const isMovies = pathname === '/movies';

@@ -1,5 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { loggedReducer } from './loggedReducer';
+import loggedSlice from './loggedSlice';
 
-export const store = configureStore({ reducer: loggedReducer });
-// console.log(store.getState())
+export default configureStore({ 
+	reducer: {
+		logged: loggedSlice
+	} 
+});

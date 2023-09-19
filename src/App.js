@@ -17,18 +17,14 @@ import { checkToken } from './api/MainApi';
 import { getSavedMovies } from './api/MainApi';
 import InfoTooltip from './components/InfoTooltip/InfoTooltip';
 import { MOVIE_DOWNLOAD_ERROR, TOKEN_VERIFICATION_ERROR } from './constans';
+import { setLoggedIn } from './store/loggedSlice';
 
 export default function App() {
 
   const dispatch = useDispatch();
-  const setLoggedIn = (value) => {
-    dispatch({type: 'LOGGED', payload: value});
-  }
-  const loggedIn = useSelector(state => state.loggedIn);
-  console.log(loggedIn);
+  const loggedIn = useSelector(state => state.logged.loggedIn);
 
   const navigate = useNavigate();
-  // const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', ownerId: '' });
   const [savedFilms, setSavedFilms] = useState([]);
@@ -77,7 +73,7 @@ export default function App() {
             localStorage.setItem('name', res.name);
             localStorage.setItem('email', res.email);
             localStorage.setItem('ownerId', res._id);
-            setLoggedIn(true);
+            dispatch(setLoggedIn(true));
             setIsTokenChecked(true);
             navigate(pathname, { replace: true });
           } else {
@@ -101,7 +97,7 @@ export default function App() {
     localStorage.removeItem('foundMovies');
     localStorage.removeItem('checkedShort');
     localStorage.removeItem('ownerId');
-    setLoggedIn(false);
+    dispatch(setLoggedIn(false));
     setCurrentUser({ name: '', email: '', ownerId: '' });
     setSavedFilms([]);
     setMovies([]);

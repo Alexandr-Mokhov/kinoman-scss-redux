@@ -6,6 +6,7 @@ import Form from '../../../components/Form/Form';
 import { authorizeUser } from '../../../api/MainApi';
 import handleError from '../../../utils/handleError';
 import { EMAIL_RULE } from '../../../constans';
+import { setLoggedIn } from '../../../store/loggedSlice';
 
 export default function Login({
   isLoading,
@@ -15,9 +16,6 @@ export default function Login({
   const { values, handleChange, errors, isValid, resetForm, isRegEx } = useFormWithValidation();
   const [errorText, setErrorText] = useState('');
   const dispatch = useDispatch();
-  const setLoggedIn = (value) => {
-    dispatch({type: 'LOGGED', payload: value});
-  }
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -31,7 +29,7 @@ export default function Login({
       .then((res) => {
         if (res.token) {
           localStorage.setItem('token', res.token);
-          setLoggedIn(true);
+          dispatch(setLoggedIn(true));
           navigate('/movies', { replace: true });
           resetForm();
         } else {
@@ -40,7 +38,7 @@ export default function Login({
       })
       .catch((err) => {
         const page = 'login';
-        setLoggedIn(false);
+        dispatch(setLoggedIn(false));
         setErrorText(handleError(err, page));
       })
       .finally(() => {
