@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Form({
   children,
   name,
   buttonText,
   onSubmit,
-  isLoading,
   isDisabledButton,
   errorText
 }) {
   const isRegister = name === 'register';
+  const isLoading = useSelector(state => state.loading.isLoading);
   
   return (
     <form className="form" onSubmit={onSubmit} name={name} noValidate>

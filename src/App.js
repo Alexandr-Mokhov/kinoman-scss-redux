@@ -16,8 +16,8 @@ import ProtectedRouteElement from './components/ProtectedRoute/ProtectedRoute';
 import { checkToken } from './api/MainApi';
 import { getSavedMovies } from './api/MainApi';
 import InfoTooltip from './components/InfoTooltip/InfoTooltip';
-import { MOVIE_DOWNLOAD_ERROR, TOKEN_VERIFICATION_ERROR } from './constans';
 import { setLoggedIn } from './store/loggedSlice';
+import { MOVIE_DOWNLOAD_ERROR, TOKEN_VERIFICATION_ERROR } from './constans';
 
 export default function App() {
 
@@ -25,7 +25,6 @@ export default function App() {
   const loggedIn = useSelector(state => state.logged.loggedIn);
 
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', ownerId: '' });
   const [savedFilms, setSavedFilms] = useState([]);
   const [movies, setMovies] = useState([]);
@@ -129,15 +128,11 @@ export default function App() {
           <Route path="/" element={<Main />} />
           <Route path="/sign-up" element={
             <Register
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
               setCurrentUser={setCurrentUser}
             />}
           />
           <Route path="/sign-in" element={
             <Login
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
               setCurrentUser={setCurrentUser}
             />}
           />
@@ -170,8 +165,6 @@ export default function App() {
           />
           <Route path="/profile" element={
             <ProtectedRouteElement element={Profile}
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
               setCurrentUser={setCurrentUser}
               onSignOut={onSignOut}
             />}

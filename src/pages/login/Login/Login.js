@@ -1,25 +1,24 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormWithValidation } from '../../../utils/formValidator';
 import Form from '../../../components/Form/Form';
 import { authorizeUser } from '../../../api/MainApi';
 import handleError from '../../../utils/handleError';
 import { EMAIL_RULE } from '../../../constans';
 import { setLoggedIn } from '../../../store/loggedSlice';
+import { setIsLoading } from '../../../store/loadingSlice';
 
-export default function Login({
-  isLoading,
-  setIsLoading
-}) {
+export default function Login() {
   const navigate = useNavigate();
   const { values, handleChange, errors, isValid, resetForm, isRegEx } = useFormWithValidation();
   const [errorText, setErrorText] = useState('');
   const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.loading.isLoading);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    setIsLoading(true);
+    dispatch(setIsLoading(true));
     setErrorText('');
 
     authorizeUser({
@@ -42,7 +41,7 @@ export default function Login({
         setErrorText(handleError(err, page));
       })
       .finally(() => {
-        setIsLoading(false);
+        dispatch(setIsLoading(false));
       })
   }
 
@@ -55,7 +54,6 @@ export default function Login({
           name={"login"}
           buttonText={isLoading ? 'Вход...' : 'Войти'}
           onSubmit={handleSubmit}
-          isLoading={isLoading}
           isDisabledButton={!isValid}
           errorText={errorText}
         >

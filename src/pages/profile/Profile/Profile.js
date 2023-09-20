@@ -1,20 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormWithValidation } from '../../../utils/formValidator';
 import { updateUserInfo } from '../../../api/MainApi';
 import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
 import handleError from '../../../utils/handleError';
+import { setIsLoading } from '../../../store/loadingSlice';
 import {
   NAME_RULE,
   EMAIL_RULE,
 } from '../../../constans';
 
-export default function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
+export default function Profile({ setCurrentUser, onSignOut }) {
   const [profileEdit, setProfileEdit] = useState(false);
   const [isMatches, setIsMatches] = useState(true);
   const { values, handleChange, errors, isValid, isRegEx } = useFormWithValidation();
   const currentUser = useContext(CurrentUserContext);
   const [notificationText, setNotificationText] = useState('');
+  const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.loading.isLoading);
 
   function changeProfileEdit() {
     setProfileEdit(!profileEdit);
@@ -37,7 +41,7 @@ export default function Profile({ isLoading, setIsLoading, setCurrentUser, onSig
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    setIsLoading(true);
+    dispatch(setIsLoading(true));
     setNotificationText('');
 
     updateUserInfo({
@@ -60,7 +64,7 @@ export default function Profile({ isLoading, setIsLoading, setCurrentUser, onSig
         setNotificationText(handleError(err, page));
       })
       .finally(() => {
-        setIsLoading(false);
+        dispatch(setIsLoading(false));
         setIsMatches(true);
       })
   }
