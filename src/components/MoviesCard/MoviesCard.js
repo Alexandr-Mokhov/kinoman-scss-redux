@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { addStatusFavorite, deleteStatusFavorite } from '../../api/MainApi';
+import { setInfoTooltipOpen } from '../../store/infoSlice';
 import {
   MINUTES_PER_HOUR,
   FAVORITE_DELETE_ERROR,
@@ -12,13 +14,13 @@ export default function MoviesCard({
   movie,
   savedFilms,
   setSavedFilms,
-  setIsInfoTooltipOpen,
   setInfoTooltipMessage,
 }) {
   const { pathname } = useLocation();
   const [isLiked, setIsLiked] = useState(false);
   const [likeDisabled, setLikeDisabled] = useState(false);
   const isSavedMovies = pathname === '/saved-movies';
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (savedFilms[0]) {
@@ -44,7 +46,7 @@ export default function MoviesCard({
         })
         .catch((err) => {
           console.log(err);
-          setIsInfoTooltipOpen(true);
+          dispatch(setInfoTooltipOpen(true));
           setInfoTooltipMessage(FAVORITE_DELETE_ERROR);
         });
     } else {
@@ -56,7 +58,7 @@ export default function MoviesCard({
         })
         .catch((err) => {
           console.log(err);
-          setIsInfoTooltipOpen(true);
+          dispatch(setInfoTooltipOpen(true));
           setInfoTooltipMessage(ERROR_ADDING_FAVORITES);
         });
     }

@@ -17,6 +17,7 @@ import { checkToken } from './api/MainApi';
 import { getSavedMovies } from './api/MainApi';
 import InfoTooltip from './components/InfoTooltip/InfoTooltip';
 import { setLoggedIn } from './store/loggedSlice';
+import { setInfoTooltipOpen } from './store/infoSlice';
 import { MOVIE_DOWNLOAD_ERROR, TOKEN_VERIFICATION_ERROR } from './constans';
 
 export default function App() {
@@ -31,7 +32,6 @@ export default function App() {
   const [foundMovies, setFoundMovies] = useState([]);
   const [notFoundMovies, setNotFoundMovies] = useState(false);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [infoTooltipMessage, setInfoTooltipMessage] = useState('');
   const [checkedShort, setCheckedShort] = useState(false);
   const { pathname } = useLocation();
@@ -48,7 +48,7 @@ export default function App() {
         })
         .catch((err) => {
           console.log(err);
-          setIsInfoTooltipOpen(true);
+          dispatch(setInfoTooltipOpen(true));
           setInfoTooltipMessage(MOVIE_DOWNLOAD_ERROR);
         })
     }
@@ -81,7 +81,7 @@ export default function App() {
         })
         .catch((err) => {
           console.log(err);
-          setIsInfoTooltipOpen(true);
+          dispatch(setInfoTooltipOpen(true));
           setInfoTooltipMessage(TOKEN_VERIFICATION_ERROR);
         });
     }
@@ -126,16 +126,8 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/sign-up" element={
-            <Register
-              setCurrentUser={setCurrentUser}
-            />}
-          />
-          <Route path="/sign-in" element={
-            <Login
-              setCurrentUser={setCurrentUser}
-            />}
-          />
+          <Route path="/sign-up" element={<Register setCurrentUser={setCurrentUser} />} />
+          <Route path="/sign-in" element={<Login setCurrentUser={setCurrentUser} />} />
           <Route path="/movies" element={
             <ProtectedRouteElement element={Movies}
               savedFilms={savedFilms}
@@ -146,7 +138,6 @@ export default function App() {
               setMovies={setMovies}
               notFoundMovies={notFoundMovies}
               setNotFoundMovies={setNotFoundMovies}
-              setIsInfoTooltipOpen={setIsInfoTooltipOpen}
               setInfoTooltipMessage={setInfoTooltipMessage}
               handleNotFoundMovies={handleNotFoundMovies}
               checkedShort={checkedShort}
@@ -159,7 +150,6 @@ export default function App() {
               setSavedFilms={setSavedFilms}
               notFoundMovies={notFoundMovies}
               setNotFoundMovies={setNotFoundMovies}
-              setIsInfoTooltipOpen={setIsInfoTooltipOpen}
               setInfoTooltipMessage={setInfoTooltipMessage}
             />}
           />
@@ -173,9 +163,7 @@ export default function App() {
         </Routes>
         <Footer />
         <InfoTooltip
-          isOpen={isInfoTooltipOpen}
           infoTooltipMessage={infoTooltipMessage}
-          setIsInfoTooltipOpen={setIsInfoTooltipOpen}
           setInfoTooltipMessage={setInfoTooltipMessage}
         />
       </CurrentUserContext.Provider>

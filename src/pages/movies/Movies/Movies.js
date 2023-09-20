@@ -31,7 +31,6 @@ export default function Movies({
   setFoundMovies,
   notFoundMovies,
   setNotFoundMovies,
-  setIsInfoTooltipOpen,
   setInfoTooltipMessage,
   handleNotFoundMovies,
   checkedShort,
@@ -195,7 +194,6 @@ export default function Movies({
           setSavedFilms={setSavedFilms}
           shortFilms={shortFilms}
           checkedShort={checkedShort}
-          setIsInfoTooltipOpen={setIsInfoTooltipOpen}
           setInfoTooltipMessage={setInfoTooltipMessage}
         />}
       {buttonMore && <MoreMovies handleClickMore={handleClickMore} />}

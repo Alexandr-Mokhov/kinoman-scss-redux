@@ -10,7 +10,6 @@ export default function MoviesCardList({
   setSavedFilms,
   shortFilms,
   checkedShort,
-  setIsInfoTooltipOpen,
   setInfoTooltipMessage,
   foundSavedMovies,
 }) {
@@ -21,7 +20,6 @@ export default function MoviesCardList({
       movie={movie}
       savedFilms={savedFilms}
       setSavedFilms={setSavedFilms}
-      setIsInfoTooltipOpen={setIsInfoTooltipOpen}
       setInfoTooltipMessage={setInfoTooltipMessage}
       key={id}
     />
