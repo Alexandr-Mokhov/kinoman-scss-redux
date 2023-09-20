@@ -2,16 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   infoTooltipOpen: false,
+  infoTooltipMessage: '',
 }
 const infoSlice = createSlice({
-  name: 'infoTooltipOpen',
+  name: 'infoTooltip',
   initialState,
   reducers: {
-    setInfoTooltipOpen(state, action) {
-      state.infoTooltipOpen = action.payload;
+    setInfoTooltip(state, action) {
+      state.infoTooltipOpen = action.payload.isOpen;
+      state.infoTooltipMessage = action.payload.message;
     }
   }
 })
 
-export const { setInfoTooltipOpen } = infoSlice.actions;
+export const { setInfoTooltip } = infoSlice.actions;
 export default infoSlice.reducer;

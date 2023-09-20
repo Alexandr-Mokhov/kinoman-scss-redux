@@ -10,7 +10,6 @@ export default function MoviesCardList({
   setSavedFilms,
   shortFilms,
   checkedShort,
-  setInfoTooltipMessage,
   foundSavedMovies,
 }) {
   const { pathname } = useLocation();
@@ -20,7 +19,6 @@ export default function MoviesCardList({
       movie={movie}
       savedFilms={savedFilms}
       setSavedFilms={setSavedFilms}
-      setInfoTooltipMessage={setInfoTooltipMessage}
       key={id}
     />
   }

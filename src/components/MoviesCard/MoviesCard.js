@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addStatusFavorite, deleteStatusFavorite } from '../../api/MainApi';
-import { setInfoTooltipOpen } from '../../store/infoSlice';
+import { setInfoTooltip } from '../../store/infoSlice';
 import {
   MINUTES_PER_HOUR,
   FAVORITE_DELETE_ERROR,
@@ -14,7 +14,6 @@ export default function MoviesCard({
   movie,
   savedFilms,
   setSavedFilms,
-  setInfoTooltipMessage,
 }) {
   const { pathname } = useLocation();
   const [isLiked, setIsLiked] = useState(false);
@@ -46,8 +45,7 @@ export default function MoviesCard({
         })
         .catch((err) => {
           console.log(err);
-          dispatch(setInfoTooltipOpen(true));
-          setInfoTooltipMessage(FAVORITE_DELETE_ERROR);
+        dispatch(setInfoTooltip({isOpen: true, message: FAVORITE_DELETE_ERROR}));
         });
     } else {
       addStatusFavorite(movie)
@@ -58,8 +56,7 @@ export default function MoviesCard({
         })
         .catch((err) => {
           console.log(err);
-          dispatch(setInfoTooltipOpen(true));
-          setInfoTooltipMessage(ERROR_ADDING_FAVORITES);
+        dispatch(setInfoTooltip({isOpen: true, message: ERROR_ADDING_FAVORITES}));
         });
     }
   }

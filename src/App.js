@@ -17,7 +17,7 @@ import { checkToken } from './api/MainApi';
 import { getSavedMovies } from './api/MainApi';
 import InfoTooltip from './components/InfoTooltip/InfoTooltip';
 import { setLoggedIn } from './store/loggedSlice';
-import { setInfoTooltipOpen } from './store/infoSlice';
+import { setInfoTooltip } from './store/infoSlice';
 import { MOVIE_DOWNLOAD_ERROR, TOKEN_VERIFICATION_ERROR } from './constans';
 
 export default function App() {
@@ -32,7 +32,6 @@ export default function App() {
   const [foundMovies, setFoundMovies] = useState([]);
   const [notFoundMovies, setNotFoundMovies] = useState(false);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
-  const [infoTooltipMessage, setInfoTooltipMessage] = useState('');
   const [checkedShort, setCheckedShort] = useState(false);
   const { pathname } = useLocation();
 
@@ -48,8 +47,7 @@ export default function App() {
         })
         .catch((err) => {
           console.log(err);
-          dispatch(setInfoTooltipOpen(true));
-          setInfoTooltipMessage(MOVIE_DOWNLOAD_ERROR);
+        dispatch(setInfoTooltip({isOpen: true, message: MOVIE_DOWNLOAD_ERROR}));
         })
     }
   }, [isTokenChecked]);
@@ -81,8 +79,7 @@ export default function App() {
         })
         .catch((err) => {
           console.log(err);
-          dispatch(setInfoTooltipOpen(true));
-          setInfoTooltipMessage(TOKEN_VERIFICATION_ERROR);
+        dispatch(setInfoTooltip({isOpen: true, message: TOKEN_VERIFICATION_ERROR}));
         });
     }
   }
@@ -138,7 +135,6 @@ export default function App() {
               setMovies={setMovies}
               notFoundMovies={notFoundMovies}
               setNotFoundMovies={setNotFoundMovies}
-              setInfoTooltipMessage={setInfoTooltipMessage}
               handleNotFoundMovies={handleNotFoundMovies}
               checkedShort={checkedShort}
               setCheckedShort={setCheckedShort}
@@ -150,7 +146,6 @@ export default function App() {
               setSavedFilms={setSavedFilms}
               notFoundMovies={notFoundMovies}
               setNotFoundMovies={setNotFoundMovies}
-              setInfoTooltipMessage={setInfoTooltipMessage}
             />}
           />
           <Route path="/profile" element={
@@ -162,10 +157,7 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
-        <InfoTooltip
-          infoTooltipMessage={infoTooltipMessage}
-          setInfoTooltipMessage={setInfoTooltipMessage}
-        />
+        <InfoTooltip />
       </CurrentUserContext.Provider>
     </div>
   );
