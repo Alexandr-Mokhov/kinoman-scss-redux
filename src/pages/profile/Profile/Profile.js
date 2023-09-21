@@ -1,24 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormWithValidation } from '../../../utils/formValidator';
 import { updateUserInfo } from '../../../api/MainApi';
-import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
 import handleError from '../../../utils/handleError';
 import { setIsLoading } from '../../../store/loadingSlice';
+import { setCurrentUser } from '../../../store/userSlice';
 import {
   NAME_RULE,
   EMAIL_RULE,
 } from '../../../constans';
 
-export default function Profile({ setCurrentUser, onSignOut }) {
+export default function Profile({ onSignOut }) {
   const [profileEdit, setProfileEdit] = useState(false);
   const [isMatches, setIsMatches] = useState(true);
   const { values, handleChange, errors, isValid, isRegEx } = useFormWithValidation();
-  const currentUser = useContext(CurrentUserContext);
   const [notificationText, setNotificationText] = useState('');
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.loading.isLoading);
+  const currentUser = useSelector(state => state.user);
 
   function changeProfileEdit() {
     setProfileEdit(!profileEdit);
@@ -50,7 +50,7 @@ export default function Profile({ setCurrentUser, onSignOut }) {
     })
       .then((res) => {
         if (res.email) {
-          setCurrentUser({ name: res.name, email: res.email });
+          dispatch(setCurrentUser({ name: res.name, email: res.email }));
           localStorage.setItem('name', res.name);
           localStorage.setItem('email', res.email);
           setProfileEdit(false);

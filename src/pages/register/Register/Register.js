@@ -7,12 +7,13 @@ import { registerUser, authorizeUser } from '../../../api/MainApi';
 import handleError from '../../../utils/handleError';
 import { setLoggedIn } from '../../../store/loggedSlice';
 import { setIsLoading } from '../../../store/loadingSlice';
+import { setCurrentUser } from '../../../store/userSlice';
 import {
   NAME_RULE,
   EMAIL_RULE,
 } from '../../../constans';
 
-export default function Register({ setCurrentUser }) {
+export default function Register() {
   const navigate = useNavigate();
   const { values, handleChange, errors, isValid, resetForm, isRegEx } = useFormWithValidation();
   const [errorText, setErrorText] = useState('');
@@ -31,7 +32,7 @@ export default function Register({ setCurrentUser }) {
     })
       .then((res) => {
         if (res.email) {
-          setCurrentUser({ name: res.name, email: res.email });
+          dispatch(setCurrentUser({ name: res.name, email: res.email }));
           localStorage.setItem('name', res.name);
           localStorage.setItem('email', res.email);
         } else {
