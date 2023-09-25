@@ -1,21 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import SearchForm from '../../../components/SearchForm/SearchForm';
 import MoviesCardList from '../../../components/MoviesCardList/MoviesCardList';
 import filterMovies from '../../../utils/filterMovies';
+import { setNotFoundMovies } from '../../../store/notMoviesSlice';
 import { SHORT_FILMS_DURATION } from '../../../constans';
 
 export default function SavedMovies({
   savedFilms,
   setSavedFilms,
-  notFoundMovies,
-  setNotFoundMovies,
 }) {
   const [value, setValue] = useState('');
   const [isValid, setIsValid] = useState(true);
   const [foundSavedMovies, setFoundSavedMovies] = useState([]);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [checkedShortSaved, setCheckedShortSaved] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (foundSavedMovies[0]) {
@@ -27,8 +28,8 @@ export default function SavedMovies({
 
   useEffect(() => {
     foundSavedMovies.length === 0 ?
-    setNotFoundMovies(true) :
-    setNotFoundMovies(false);
+    dispatch(setNotFoundMovies(true)) :
+    dispatch(setNotFoundMovies(false));
   }, [foundSavedMovies, checkedShortSaved])
 
   function handleChange(evt) {
@@ -79,7 +80,6 @@ export default function SavedMovies({
       <MoviesCardList
         savedFilms={savedFilms}
         setSavedFilms={setSavedFilms}
-        notFoundMovies={notFoundMovies}
         foundSavedMovies={foundSavedMovies}
       />
     </main>

@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import SearchForm from '../../../components/SearchForm/SearchForm';
 import MoviesCardList from '../../../components/MoviesCardList/MoviesCardList';
 import MoreMovies from '../MoreMovies/MoreMovies';
@@ -7,6 +8,7 @@ import { getAllMovies } from '../../../api/MoviesApi';
 import Preloader from '../../../components/Preloader/Preloader';
 import { useResize } from '../../../utils/checkResize';
 import filterMovies from '../../../utils/filterMovies';
+import { setNotFoundMovies } from '../../../store/notMoviesSlice';
 import {
   SCREEN_DESCTOP,
   SCREEN_TABLET,
@@ -29,11 +31,6 @@ export default function Movies({
   setMovies,
   foundMovies,
   setFoundMovies,
-  notFoundMovies,
-  setNotFoundMovies,
-  handleNotFoundMovies,
-  checkedShort,
-  setCheckedShort,
 }) {
   const [value, setValue] = useState('');
   const [isValid, setIsValid] = useState(true);
@@ -44,7 +41,9 @@ export default function Movies({
   const [buttonMore, setButtonMore] = useState(false);
   const [startItems, setStartItems] = useState(5);
   const [addedItems, setAddedItems] = useState(2);
+  const [checkedShort, setCheckedShort] = useState(false);
   const windowWidth = useResize();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     settingAmountFilms();
@@ -62,7 +61,7 @@ export default function Movies({
 
   useEffect(() => {
     if (movies[0]) {
-      setNotFoundMovies(false);
+      dispatch(setNotFoundMovies(false));
     }
     handleNotFoundMovies(shortFilms, foundMovies);
     savingLocalData();
@@ -172,6 +171,20 @@ export default function Movies({
     findMovies(!checkedShort);
   }
 
+  function handleNotFoundMovies(shortList, foundList) {
+    if (movies[0]) {
+      if (checkedShort) {
+        shortList.length === 0 ?
+          dispatch(setNotFoundMovies(true)) :
+          dispatch(setNotFoundMovies(false));
+      } else {
+        foundList.length === 0 ?
+          dispatch(setNotFoundMovies(true)) :
+          dispatch(setNotFoundMovies(false));
+      }
+    }
+  }
+
   return (
     <main className="movies" aria-label="Фильмы">
       <SearchForm
@@ -186,7 +199,6 @@ export default function Movies({
       {preloaderEnabled ? <Preloader /> :
         <MoviesCardList
           foundMovies={foundMovies}
-          notFoundMovies={notFoundMovies}
           errorFoundMovies={errorFoundMovies}
           startItems={startItems}
           savedFilms={savedFilms}

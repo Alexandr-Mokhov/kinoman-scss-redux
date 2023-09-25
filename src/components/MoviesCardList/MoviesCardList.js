@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
 export default function MoviesCardList({
   foundMovies,
-  notFoundMovies,
   errorFoundMovies,
   startItems,
   savedFilms,
@@ -13,6 +13,7 @@ export default function MoviesCardList({
   foundSavedMovies,
 }) {
   const { pathname } = useLocation();
+  const notFoundMovies = useSelector(state => state.notMovies.notFoundMovies);
 
   function createMovieCard(movie, id) {
     return <MoviesCard

@@ -18,6 +18,7 @@ import InfoTooltip from './components/InfoTooltip/InfoTooltip';
 import { setLoggedIn } from './store/loggedSlice';
 import { setInfoTooltip } from './store/infoSlice';
 import { setCurrentUser } from './store/userSlice';
+import { setNotFoundMovies } from './store/notMoviesSlice';
 import { MOVIE_DOWNLOAD_ERROR, TOKEN_VERIFICATION_ERROR } from './constans';
 
 export default function App() {
@@ -30,9 +31,7 @@ export default function App() {
   const [savedFilms, setSavedFilms] = useState([]);
   const [movies, setMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
-  const [notFoundMovies, setNotFoundMovies] = useState(false);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
-  const [checkedShort, setCheckedShort] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -98,23 +97,9 @@ export default function App() {
     setSavedFilms([]);
     setMovies([]);
     setFoundMovies([]);
-    setNotFoundMovies(false);
+    dispatch(setNotFoundMovies(false));
     setIsTokenChecked(false);
     navigate('/', { replace: true });
-  }
-
-  function handleNotFoundMovies(shortList, foundList) {
-    if (movies[0]) {
-      if (checkedShort) {
-        shortList.length === 0 ?
-          setNotFoundMovies(true) :
-          setNotFoundMovies(false);
-      } else {
-        foundList.length === 0 ?
-          setNotFoundMovies(true) :
-          setNotFoundMovies(false);
-      }
-    }
   }
 
   return (
@@ -132,19 +117,12 @@ export default function App() {
             setFoundMovies={setFoundMovies}
             movies={movies}
             setMovies={setMovies}
-            notFoundMovies={notFoundMovies}
-            setNotFoundMovies={setNotFoundMovies}
-            handleNotFoundMovies={handleNotFoundMovies}
-            checkedShort={checkedShort}
-            setCheckedShort={setCheckedShort}
           />}
         />
         <Route path="/saved-movies" element={
           <ProtectedRouteElement element={SavedMovies}
             savedFilms={savedFilms}
             setSavedFilms={setSavedFilms}
-            notFoundMovies={notFoundMovies}
-            setNotFoundMovies={setNotFoundMovies}
           />}
         />
         <Route path="/profile" element={

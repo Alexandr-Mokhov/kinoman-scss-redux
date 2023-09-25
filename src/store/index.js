@@ -3,6 +3,7 @@ import loggedSlice from './loggedSlice';
 import loadingSlice from './loadingSlice';
 import infoSlice from './infoSlice';
 import userSlice from './userSlice';
+import notMoviesSlice from './notMoviesSlice';
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     loading: loadingSlice,
     info: infoSlice,
     user: userSlice,
+    notMovies: notMoviesSlice,
   }
 });
