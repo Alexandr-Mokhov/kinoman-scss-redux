@@ -5,9 +5,9 @@ import Form from '../../../components/Form/Form';
 import { useFormWithValidation } from '../../../utils/formValidator';
 import { registerUser, authorizeUser } from '../../../api/MainApi';
 import handleError from '../../../utils/handleError';
-import { setLoggedIn } from '../../../store/loggedSlice';
-import { setIsLoading } from '../../../store/loadingSlice';
-import { setCurrentUser } from '../../../store/userSlice';
+import { setLoggedIn } from '../../../store/features/loggedSlice';
+import { setIsLoading } from '../../../store/features/loadingSlice';
+import { setCurrentUser } from '../../../store/features/userSlice';
 import {
   NAME_RULE,
   EMAIL_RULE,

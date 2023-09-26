@@ -8,7 +8,7 @@ import { getAllMovies } from '../../../api/MoviesApi';
 import Preloader from '../../../components/Preloader/Preloader';
 import { useResize } from '../../../utils/checkResize';
 import filterMovies from '../../../utils/filterMovies';
-import { setNotFoundMovies } from '../../../store/notMoviesSlice';
+import { setNotFoundMovies } from '../../../store/features/notMoviesSlice';
 import {
   SCREEN_DESCTOP,
   SCREEN_TABLET,

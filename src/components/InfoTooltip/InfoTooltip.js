@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setInfoTooltip } from "../../store/infoSlice";
+import { setInfoTooltip } from "../../store/features/infoSlice";
 
 export default function InfoTooltip() {
   const dispatch = useDispatch();

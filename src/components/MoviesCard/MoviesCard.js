@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addStatusFavorite, deleteStatusFavorite } from '../../api/MainApi';
-import { setInfoTooltip } from '../../store/infoSlice';
+import { setInfoTooltip } from '../../store/features/infoSlice';
 import {
   MINUTES_PER_HOUR,
   FAVORITE_DELETE_ERROR,

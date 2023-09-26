@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormWithValidation } from '../../../utils/formValidator';
 import { updateUserInfo } from '../../../api/MainApi';
 import handleError from '../../../utils/handleError';
-import { setIsLoading } from '../../../store/loadingSlice';
-import { setCurrentUser } from '../../../store/userSlice';
+import { setIsLoading } from '../../../store/features/loadingSlice';
+import { setCurrentUser } from '../../../store/features/userSlice';
 import {
   NAME_RULE,
   EMAIL_RULE,

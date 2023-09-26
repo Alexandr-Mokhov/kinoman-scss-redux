@@ -6,8 +6,8 @@ import Form from '../../../components/Form/Form';
 import { authorizeUser } from '../../../api/MainApi';
 import handleError from '../../../utils/handleError';
 import { EMAIL_RULE } from '../../../constans';
-import { setLoggedIn } from '../../../store/loggedSlice';
-import { setIsLoading } from '../../../store/loadingSlice';
+import { setLoggedIn } from '../../../store/features/loggedSlice';
+import { setIsLoading } from '../../../store/features/loadingSlice';
 
 export default function Login() {
   const navigate = useNavigate();

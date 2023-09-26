@@ -15,10 +15,10 @@ import ProtectedRouteElement from './components/ProtectedRoute/ProtectedRoute';
 import { checkToken } from './api/MainApi';
 import { getSavedMovies } from './api/MainApi';
 import InfoTooltip from './components/InfoTooltip/InfoTooltip';
-import { setLoggedIn } from './store/loggedSlice';
-import { setInfoTooltip } from './store/infoSlice';
-import { setCurrentUser } from './store/userSlice';
-import { setNotFoundMovies } from './store/notMoviesSlice';
+import { setLoggedIn } from './store/features/loggedSlice';
+import { setInfoTooltip } from './store/features/infoSlice';
+import { setCurrentUser } from './store/features/userSlice';
+import { setNotFoundMovies } from './store/features/notMoviesSlice';
 import { MOVIE_DOWNLOAD_ERROR, TOKEN_VERIFICATION_ERROR } from './constans';
 
 export default function App() {

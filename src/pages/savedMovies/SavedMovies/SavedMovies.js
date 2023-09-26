@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import SearchForm from '../../../components/SearchForm/SearchForm';
 import MoviesCardList from '../../../components/MoviesCardList/MoviesCardList';
 import filterMovies from '../../../utils/filterMovies';
-import { setNotFoundMovies } from '../../../store/notMoviesSlice';
+import { setNotFoundMovies } from '../../../store/features/notMoviesSlice';
 import { SHORT_FILMS_DURATION } from '../../../constans';
 
 export default function SavedMovies({
