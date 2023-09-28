@@ -1,25 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addStatusFavorite, deleteStatusFavorite } from '../../api/MainApi';
 import { setInfoTooltip } from '../../store/features/infoSlice';
+import { setSavedFilms } from '../../store/features/filmsSlice';
 import {
   MINUTES_PER_HOUR,
   FAVORITE_DELETE_ERROR,
   ERROR_ADDING_FAVORITES,
 } from '../../constans';
 
-export default function MoviesCard({
-  movie,
-  savedFilms,
-  setSavedFilms,
-}) {
+export default function MoviesCard({ movie }) {
   const { pathname } = useLocation();
   const [isLiked, setIsLiked] = useState(false);
   const [likeDisabled, setLikeDisabled] = useState(false);
   const isSavedMovies = pathname === '/saved-movies';
   const dispatch = useDispatch();
+  const savedFilms = useSelector(state => state.favorite.savedFilms);
 
   useEffect(() => {
     if (savedFilms[0]) {
@@ -40,7 +38,7 @@ export default function MoviesCard({
       deleteStatusFavorite(movie)
         .then(() => {
           setIsLiked(false);
-          setSavedFilms((state) => state.filter(arrayItem => arrayItem._id !== movie._id));
+          dispatch(setSavedFilms(savedFilms.filter(item => item._id !== movie._id)));
           setLikeDisabled(false);
         })
         .catch((err) => {
@@ -51,7 +49,7 @@ export default function MoviesCard({
       addStatusFavorite(movie)
         .then((res) => {
           setIsLiked(true);
-          setSavedFilms([...savedFilms, res]);
+          dispatch(setSavedFilms([...savedFilms, res]));
           setLikeDisabled(false);
         })
         .catch((err) => {

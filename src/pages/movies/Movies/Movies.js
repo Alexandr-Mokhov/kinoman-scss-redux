@@ -25,8 +25,6 @@ import {
 } from '../../../constans';
 
 export default function Movies({
-  savedFilms,
-  setSavedFilms,
   movies,
   setMovies,
   foundMovies,
@@ -201,8 +199,6 @@ export default function Movies({
           foundMovies={foundMovies}
           errorFoundMovies={errorFoundMovies}
           startItems={startItems}
-          savedFilms={savedFilms}
-          setSavedFilms={setSavedFilms}
           shortFilms={shortFilms}
           checkedShort={checkedShort}
         />}

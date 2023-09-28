@@ -6,20 +6,17 @@ export default function MoviesCardList({
   foundMovies,
   errorFoundMovies,
   startItems,
-  savedFilms,
-  setSavedFilms,
   shortFilms,
   checkedShort,
   foundSavedMovies,
 }) {
   const { pathname } = useLocation();
   const notFoundMovies = useSelector(state => state.notMovies.notFoundMovies);
+  const savedFilms = useSelector(state => state.favorite.savedFilms);
 
   function createMovieCard(movie, id) {
     return <MoviesCard
       movie={movie}
-      savedFilms={savedFilms}
-      setSavedFilms={setSavedFilms}
       key={id}
     />
   }

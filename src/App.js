@@ -5,20 +5,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from './components/Header/Header';
 import Main from './pages/main/Main/Main';
 import Movies from './pages/movies/Movies/Movies';
-import SavedMovies from '../src/pages/savedMovies/SavedMovies/SavedMovies';
+import SavedMovies from './pages/savedMovies/SavedMovies/SavedMovies';
 import Profile from './pages/profile/Profile/Profile';
 import Register from './pages/register/Register/Register';
 import Login from './pages/login/Login/Login';
 import NotFound from './pages/notFound/NotFound/NotFound';
 import Footer from './components/Footer/Footer';
 import ProtectedRouteElement from './components/ProtectedRoute/ProtectedRoute';
+import InfoTooltip from './components/InfoTooltip/InfoTooltip';
 import { checkToken } from './api/MainApi';
 import { getSavedMovies } from './api/MainApi';
-import InfoTooltip from './components/InfoTooltip/InfoTooltip';
 import { setLoggedIn } from './store/features/loggedSlice';
 import { setInfoTooltip } from './store/features/infoSlice';
 import { setCurrentUser } from './store/features/userSlice';
 import { setNotFoundMovies } from './store/features/notMoviesSlice';
+import { setSavedFilms } from './store/features/filmsSlice';
 import { MOVIE_DOWNLOAD_ERROR, TOKEN_VERIFICATION_ERROR } from './constans';
 
 export default function App() {
@@ -28,7 +29,6 @@ export default function App() {
   const currentUser = useSelector(state => state.user);
 
   const navigate = useNavigate();
-  const [savedFilms, setSavedFilms] = useState([]);
   const [movies, setMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
@@ -42,7 +42,7 @@ export default function App() {
     if (loggedIn) {
       getSavedMovies()
         .then((res) => {
-          setSavedFilms(res.filter(movie => movie.owner === currentUser.ownerId));
+          dispatch(setSavedFilms(res.filter(movie => movie.owner === currentUser.ownerId)));
         })
         .catch((err) => {
           console.log(err);
@@ -94,7 +94,7 @@ export default function App() {
     localStorage.removeItem('ownerId');
     dispatch(setLoggedIn(false));
     dispatch(setCurrentUser({ name: '', email: '', ownerId: '' }));
-    setSavedFilms([]);
+    dispatch(setSavedFilms([]));
     setMovies([]);
     setFoundMovies([]);
     dispatch(setNotFoundMovies(false));
@@ -111,8 +111,6 @@ export default function App() {
         <Route path="/sign-in" element={<Login />} />
         <Route path="/movies" element={
           <ProtectedRouteElement element={Movies}
-            savedFilms={savedFilms}
-            setSavedFilms={setSavedFilms}
             foundMovies={foundMovies}
             setFoundMovies={setFoundMovies}
             movies={movies}
@@ -120,10 +118,7 @@ export default function App() {
           />}
         />
         <Route path="/saved-movies" element={
-          <ProtectedRouteElement element={SavedMovies}
-            savedFilms={savedFilms}
-            setSavedFilms={setSavedFilms}
-          />}
+          <ProtectedRouteElement element={SavedMovies} />}
         />
         <Route path="/profile" element={
           <ProtectedRouteElement element={Profile}
