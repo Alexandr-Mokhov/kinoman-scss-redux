@@ -15,7 +15,7 @@ export default function SavedMovies() {
   const [checkedShortSaved, setCheckedShortSaved] = useState(false);
   const dispatch = useDispatch();
   const savedFilms = useSelector(state => state.favorite.savedFilms);
-// console.log(savedFilms);
+
   useEffect(() => {
     if (foundSavedMovies[0]) {
       handleVisibledFilms(checkedShortSaved);

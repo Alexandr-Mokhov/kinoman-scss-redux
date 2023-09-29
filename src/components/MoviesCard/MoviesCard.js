@@ -12,12 +12,12 @@ import {
 } from '../../constans';
 
 export default function MoviesCard({ movie }) {
+  const dispatch = useDispatch();
+  const savedFilms = useSelector(state => state.favorite.savedFilms);
   const { pathname } = useLocation();
   const [isLiked, setIsLiked] = useState(false);
   const [likeDisabled, setLikeDisabled] = useState(false);
   const isSavedMovies = pathname === '/saved-movies';
-  const dispatch = useDispatch();
-  const savedFilms = useSelector(state => state.favorite.savedFilms);
 
   useEffect(() => {
     if (savedFilms[0]) {

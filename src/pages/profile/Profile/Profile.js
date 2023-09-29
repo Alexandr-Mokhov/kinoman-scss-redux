@@ -12,13 +12,13 @@ import {
 } from '../../../constans';
 
 export default function Profile({ onSignOut }) {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.loading.isLoading);
+  const currentUser = useSelector(state => state.user);
   const [profileEdit, setProfileEdit] = useState(false);
   const [isMatches, setIsMatches] = useState(true);
   const { values, handleChange, errors, isValid, isRegEx } = useFormWithValidation();
   const [notificationText, setNotificationText] = useState('');
-  const dispatch = useDispatch();
-  const isLoading = useSelector(state => state.loading.isLoading);
-  const currentUser = useSelector(state => state.user);
 
   function changeProfileEdit() {
     setProfileEdit(!profileEdit);

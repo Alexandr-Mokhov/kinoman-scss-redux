@@ -24,12 +24,7 @@ import {
   ONE_ADDITIONAL_ELEMENT,
 } from '../../../constans';
 
-export default function Movies({
-  movies,
-  setMovies,
-  foundMovies,
-  setFoundMovies,
-}) {
+export default function Movies() {
   const [value, setValue] = useState('');
   const [isValid, setIsValid] = useState(true);
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -40,6 +35,8 @@ export default function Movies({
   const [startItems, setStartItems] = useState(5);
   const [addedItems, setAddedItems] = useState(2);
   const [checkedShort, setCheckedShort] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [foundMovies, setFoundMovies] = useState([]);
   const windowWidth = useResize();
   const dispatch = useDispatch();
 

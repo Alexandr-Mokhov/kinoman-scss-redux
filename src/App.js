@@ -23,16 +23,12 @@ import { setSavedFilms } from './store/features/filmsSlice';
 import { MOVIE_DOWNLOAD_ERROR, TOKEN_VERIFICATION_ERROR } from './constans';
 
 export default function App() {
-
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const loggedIn = useSelector(state => state.logged.loggedIn);
   const currentUser = useSelector(state => state.user);
-
-  const navigate = useNavigate();
-  const [movies, setMovies] = useState([]);
-  const [foundMovies, setFoundMovies] = useState([]);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
-  const { pathname } = useLocation();
 
   useEffect(() => {
     tokenCheck();
@@ -95,8 +91,6 @@ export default function App() {
     dispatch(setLoggedIn(false));
     dispatch(setCurrentUser({ name: '', email: '', ownerId: '' }));
     dispatch(setSavedFilms([]));
-    setMovies([]);
-    setFoundMovies([]);
     dispatch(setNotFoundMovies(false));
     setIsTokenChecked(false);
     navigate('/', { replace: true });
@@ -110,12 +104,7 @@ export default function App() {
         <Route path="/sign-up" element={<Register />} />
         <Route path="/sign-in" element={<Login />} />
         <Route path="/movies" element={
-          <ProtectedRouteElement element={Movies}
-            foundMovies={foundMovies}
-            setFoundMovies={setFoundMovies}
-            movies={movies}
-            setMovies={setMovies}
-          />}
+          <ProtectedRouteElement element={Movies} />}
         />
         <Route path="/saved-movies" element={
           <ProtectedRouteElement element={SavedMovies} />}
