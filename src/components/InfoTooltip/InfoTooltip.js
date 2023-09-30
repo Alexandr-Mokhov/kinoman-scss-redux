@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setInfoTooltip } from "../../store/features/infoSlice";
+import { setInfoTooltip } from "../../store/features/tooltipSlice";
 
 export default function InfoTooltip() {
   const dispatch = useDispatch();
-  const infoTooltipOpen = useSelector(state => state.info.infoTooltipOpen)
-  const infoTooltipMessage = useSelector(state => state.info.infoTooltipMessage)
+  const infoTooltipOpen = useSelector(state => state.tooltip.infoTooltipOpen)
+  const infoTooltipMessage = useSelector(state => state.tooltip.infoTooltipMessage)
 
   function closeInfoTooltip() {
     dispatch(setInfoTooltip({isOpen: false, message: ''}));

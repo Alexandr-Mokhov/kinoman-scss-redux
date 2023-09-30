@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addStatusFavorite, deleteStatusFavorite } from '../../api/MainApi';
-import { setInfoTooltip } from '../../store/features/infoSlice';
+import { setInfoTooltip } from '../../store/features/tooltipSlice';
 import { setSavedFilms } from '../../store/features/filmsSlice';
 import {
   MINUTES_PER_HOUR,

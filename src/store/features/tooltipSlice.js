@@ -4,7 +4,7 @@ const initialState = {
   infoTooltipOpen: false,
   infoTooltipMessage: '',
 }
-const infoSlice = createSlice({
+const tooltipSlice = createSlice({
   name: 'infoTooltip',
   initialState,
   reducers: {
@@ -15,5 +15,5 @@ const infoSlice = createSlice({
   }
 })
 
-export const { setInfoTooltip } = infoSlice.actions;
-export default infoSlice.reducer;
+export const { setInfoTooltip } = tooltipSlice.actions;
+export default tooltipSlice.reducer;

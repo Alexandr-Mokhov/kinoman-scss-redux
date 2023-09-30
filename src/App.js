@@ -16,7 +16,7 @@ import InfoTooltip from './components/InfoTooltip/InfoTooltip';
 import { checkToken } from './api/MainApi';
 import { getSavedMovies } from './api/MainApi';
 import { setLoggedIn } from './store/features/loggedSlice';
-import { setInfoTooltip } from './store/features/infoSlice';
+import { setInfoTooltip } from './store/features/tooltipSlice';
 import { setCurrentUser } from './store/features/userSlice';
 import { setNotFoundMovies } from './store/features/notMoviesSlice';
 import { setSavedFilms } from './store/features/filmsSlice';
@@ -103,17 +103,9 @@ export default function App() {
         <Route path="/" element={<Main />} />
         <Route path="/sign-up" element={<Register />} />
         <Route path="/sign-in" element={<Login />} />
-        <Route path="/movies" element={
-          <ProtectedRouteElement element={Movies} />}
-        />
-        <Route path="/saved-movies" element={
-          <ProtectedRouteElement element={SavedMovies} />}
-        />
-        <Route path="/profile" element={
-          <ProtectedRouteElement element={Profile}
-            onSignOut={onSignOut}
-          />}
-        />
+        <Route path="/movies" element={<ProtectedRouteElement element={Movies} />} />
+        <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} />} />
+        <Route path="/profile" element={<ProtectedRouteElement element={Profile} onSignOut={onSignOut} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
