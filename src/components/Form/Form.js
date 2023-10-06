@@ -6,11 +6,11 @@ export default function Form({
   name,
   buttonText,
   onSubmit,
-  isDisabledButton,
-  errorText
+  isDisabledButton
 }) {
   const isRegister = name === 'register';
   const isLoading = useSelector(state => state.loading.isLoading);
+  const errorText = useSelector(state => state.error.errorText);
   
   return (
     <form className="form" onSubmit={onSubmit} name={name} noValidate>

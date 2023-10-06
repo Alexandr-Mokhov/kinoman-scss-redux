@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   savedFilms: [],
 }
+
 const filmsSlice = createSlice({
   name: 'savedFilms',
   initialState,

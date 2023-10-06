@@ -4,6 +4,7 @@ const initialState = {
   infoTooltipOpen: false,
   infoTooltipMessage: '',
 }
+
 const tooltipSlice = createSlice({
   name: 'infoTooltip',
   initialState,

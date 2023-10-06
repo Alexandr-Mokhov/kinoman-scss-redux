@@ -58,7 +58,7 @@ export default function App() {
   const tokenCheck = () => {
     const jwt = localStorage.getItem('token');
     if (jwt) {
-      checkToken(jwt)
+      checkToken()
         .then((res) => {
           if (res) {
             dispatch(setCurrentUser({ name: res.name, email: res.email, ownerId: res._id }));

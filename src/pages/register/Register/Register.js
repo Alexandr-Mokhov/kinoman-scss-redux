@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Form from '../../../components/Form/Form';
 import { useFormWithValidation } from '../../../utils/formValidator';
@@ -8,6 +7,7 @@ import handleError from '../../../utils/handleError';
 import { setLoggedIn } from '../../../store/features/loggedSlice';
 import { setIsLoading } from '../../../store/features/loadingSlice';
 import { setCurrentUser } from '../../../store/features/userSlice';
+import { setErrorText } from '../../../store/features/errorSlice';
 import {
   NAME_RULE,
   EMAIL_RULE,
@@ -16,14 +16,13 @@ import {
 export default function Register() {
   const navigate = useNavigate();
   const { values, handleChange, errors, isValid, resetForm, isRegEx } = useFormWithValidation();
-  const [errorText, setErrorText] = useState('');
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.loading.isLoading);
 
   function handleSubmit(evt) {
     evt.preventDefault();
     dispatch(setIsLoading(true));
-    setErrorText('');
+    dispatch(setErrorText(''));
 
     registerUser({
       name: values['name'],
@@ -57,7 +56,7 @@ export default function Register() {
       })
       .catch((err) => {
         const page = 'register';
-        setErrorText(handleError(err, page));
+        dispatch(setErrorText(handleError(err, page)));
       })
       .finally(() => {
         dispatch(setIsLoading(false));
@@ -74,7 +73,6 @@ export default function Register() {
           buttonText={isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
           onSubmit={handleSubmit}
           isDisabledButton={!isValid}
-          errorText={errorText}
         >
           <label className="form__label" htmlFor="input-name">Имя</label>
           <input
